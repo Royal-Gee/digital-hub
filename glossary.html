@@ -2,60 +2,241 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A learner-friendly glossary of essential digital literacy and cybersecurity terms.">
-<title>Digital Literacy Glossary | Digital Literacy Hub</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"></head>
+<title>Digital Literacy Glossary | Digital Literacy Hub</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.glossary-page .glossary-hero { padding:48px 24px 36px; text-align:center; }
+.glossary-page .glossary-hero .eyebrow { color:#006B3F; }
+.glossary-page .glossary-hero h1 { font-size:clamp(28px,4vw,44px); font-weight:800; color:#1F2937; margin-bottom:10px; }
+.glossary-page .glossary-hero h1 em { font-style:normal; color:#006B3F; }
+.glossary-page .glossary-hero p { color:#6B7280; font-size:16px; max-width:520px; margin:0 auto; }
+
+.glossary-page .glossary-controls { max-width:900px; margin:0 auto 24px; padding:0 24px; }
+.glossary-page .glossary-search { max-width:720px; margin:0 auto 20px; }
+.glossary-page .glossary-search input {
+    width:100%; padding:14px 18px 14px 44px; border:1.5px solid #dce4df; border-radius:12px;
+    background:#FFFFFF; color:#1F2937; font-size:15px; outline:none; transition:border-color .15s, box-shadow .15s;
+    -webkit-appearance:none; appearance:none;
+}
+.glossary-page .glossary-search input:focus { border-color:#006B3F; box-shadow:0 0 0 3px rgba(0,107,63,.12); }
+.glossary-page .glossary-search { position:relative; }
+.glossary-page .glossary-search::before {
+    content:""; position:absolute; left:38px; top:50%; transform:translateY(-50%);
+    width:18px; height:18px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
+    background-size:contain; background-repeat:no-repeat; pointer-events:none;
+}
+.glossary-page .glossary-az { display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin-bottom:16px; }
+.glossary-page .glossary-az a {
+    display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px;
+    font-size:12px; font-weight:700; border-radius:6px; color:#6B7280; background:#FFFFFF;
+    border:1px solid #dce4df; transition:all .15s; text-decoration:none;
+}
+.glossary-page .glossary-az a:hover { background:#E8F5E9; color:#006B3F; border-color:#006B3F; }
+.glossary-page .glossary-az a:focus-visible { outline:3px solid #006B3F; outline-offset:2px; }
+.glossary-page .glossary-az a.active { background:#006B3F; color:#FFFFFF; border-color:#006B3F; }
+.glossary-page .glossary-categories { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:24px; }
+.glossary-page .glossary-categories button {
+    padding:7px 16px; font-size:13px; font-weight:600; border-radius:20px; cursor:pointer;
+    background:#FFFFFF; color:#1F2937; border:1px solid #dce4df; transition:all .15s;
+}
+.glossary-page .glossary-categories button:hover { background:#E8F5E9; border-color:#006B3F; color:#006B3F; }
+.glossary-page .glossary-categories button:focus-visible { outline:3px solid #006B3F; outline-offset:2px; }
+.glossary-page .glossary-categories button.active { background:#006B3F; color:#FFFFFF; border-color:#006B3F; }
+.glossary-page .glossary-count { text-align:center; font-size:13px; color:#6B7280; margin-bottom:20px; }
+.glossary-page .glossary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:1100px; margin:0 auto; padding:0 24px; }
+.glossary-page .glossary-item {
+    background:#FFFFFF; border:1px solid #dce4df; border-radius:12px; padding:20px;
+    transition:box-shadow .2s, transform .2s; display:flex; flex-direction:column; gap:8px;
+}
+.glossary-page .glossary-item:hover { box-shadow:0 4px 20px rgba(0,107,63,.08); transform:translateY(-2px); }
+.glossary-page .glossary-item:focus-within { outline:3px solid #006B3F; outline-offset:2px; }
+.glossary-page .glossary-item[hidden] { display:none; }
+.glossary-page .glossary-item .term-tag {
+    display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    padding:3px 8px; border-radius:4px; background:#E8F5E9; color:#006B3F; width:fit-content;
+}
+.glossary-page .glossary-item h3 { font-size:17px; font-weight:700; color:#1F2937; margin:0; }
+.glossary-page .glossary-item .definition { color:#6B7280; font-size:14px; line-height:1.55; margin:0; }
+.glossary-page .glossary-item .example {
+    font-size:13px; color:#B08D3C; background:#FFF3CD; padding:8px 12px; border-radius:6px; margin-top:4px;
+    font-style:italic; line-height:1.5;
+}
+.glossary-page .glossary-empty {
+    text-align:center; padding:60px 24px; max-width:500px; margin:0 auto; display:none;
+}
+.glossary-page .glossary-empty.visible { display:block; }
+.glossary-page .glossary-empty h3 { font-size:20px; color:#1F2937; margin-bottom:10px; }
+.glossary-page .glossary-empty p { color:#6B7280; font-size:15px; }
+
+@media(max-width:1023px) { .glossary-page .glossary-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:767px) { .glossary-page .glossary-grid { grid-template-columns:1fr; } }
+@media(max-width:480px) {
+    .glossary-page .glossary-az a { width:28px; height:28px; font-size:11px; }
+    .glossary-page .glossary-categories button { padding:6px 12px; font-size:12px; }
+}
+</style>
+</head>
 <body>
 <div class="topbar">Digital Literacy Glossary <strong>Understand the terms</strong></div>
 <header class="header">
 <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/dlh.png" alt="Digital Literacy Hub logo"></span><span class="brand-text"><strong>Digital Literacy Hub</strong><small>Learn · Think · Create · Connect</small></span></a>
 <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span data-icon="menu" style="width:24px;height:24px;display:inline-block;"></span></button>
 <nav class="nav" id="site-nav" aria-label="Main navigation">
-        <div class="mobile-drawer-head">
-            <div class="mobile-drawer-brand">
-                <img src="assets/dlh.png" alt="" width="38" height="38">
-                <span></span>
-            </div>
-            <button class="drawer-close" type="button" aria-label="Close navigation">×</button>
-        </div>
-        <a href="index.html" data-nav-key="home">Home</a>
-        <a href="skills.html" data-nav-key="learn">Learn</a>
-        <a href="interactive.html" data-nav-key="interactive">Interactive</a>
-        <a href="challenge.html" data-nav-key="assessment">Assessment</a>
-        <a href="progress.html" data-nav-key="progress">My Progress</a>
-        <a href="prosperity.html" data-nav-key="future">Digital Future</a>
-        <a href="about.html" data-nav-key="about">About</a>
-        <a class="active" href="glossary.html" data-nav-key="glossary">Glossary</a>
-        <div class="nav-more-label">MORE</div>
-        <div class="nav-more-links">
-            <a href="people.html">People</a>
-            <a href="planet.html">Planet</a>
-            <a href="zimbabwe.html">Zimbabwe</a>
-            <a href="resources.html">Resources</a>
-        </div>
-    </nav>
-    <div class="nav-backdrop" aria-hidden="true"></div>
+<div class="mobile-drawer-head"><div class="mobile-drawer-brand"><img src="assets/dlh.png" alt="" width="38" height="38"><span></span></div><button class="drawer-close" type="button" aria-label="Close navigation">×</button></div>
+<a href="index.html" data-nav-key="home">Home</a>
+<a href="skills.html" data-nav-key="learn">Learn</a>
+<a href="interactive.html" data-nav-key="interactive">Interactive</a>
+<a href="challenge.html" data-nav-key="assessment">Assessment</a>
+<a href="progress.html" data-nav-key="progress">My Progress</a>
+<a href="prosperity.html" data-nav-key="future">Digital Future</a>
+<a href="about.html" data-nav-key="about">About</a>
+<a class="active" href="glossary.html" data-nav-key="glossary">Glossary</a>
+<div class="nav-more-label">MORE</div>
+<div class="nav-more-links">
+<a href="people.html">People</a>
+<a href="planet.html">Planet</a>
+<a href="zimbabwe.html">Zimbabwe</a>
+<a href="resources.html">Resources</a>
+</div>
+</nav>
+<div class="nav-backdrop" aria-hidden="true"></div>
 <a class="nav-cta" href="challenge.html">Take Assessment</a></header>
-<main><section class="page-hero"><div class="eyebrow">QUICK REFERENCE</div><h1>Digital Literacy <em>Glossary</em></h1><p>Search simple explanations for important terms used across the Hub.</p></section>
-<section class="section"><div class="section-inner"><div class="glossary-search"><input id="glossarySearch" type="search" placeholder="Search a term..." aria-label="Search glossary"></div>
-<div class="glossary-grid" id="glossaryGrid">
-<article class="glossary-item" data-term="phishing"><h3>Phishing</h3><p>A deceptive message or website designed to trick someone into revealing information or taking an unsafe action.</p></article>
-<article class="glossary-item" data-term="digital footprint"><h3>Digital footprint</h3><p>The information and traces created by a person's online activities.</p></article>
-<article class="glossary-item" data-term="two-factor authentication"><h3>Two-factor authentication</h3><p>A security method that requires two different forms of verification to access an account.</p></article>
-<article class="glossary-item" data-term="misinformation"><h3>Misinformation</h3><p>False or inaccurate information shared without necessarily intending to deceive.</p></article>
-<article class="glossary-item" data-term="disinformation"><h3>Disinformation</h3><p>False or misleading information deliberately created or shared to deceive.</p></article>
-<article class="glossary-item" data-term="malware"><h3>Malware</h3><p>Software designed to damage, disrupt, spy on or gain unauthorised access to systems.</p></article>
-<article class="glossary-item" data-term="generative ai"><h3>Generative AI</h3><p>AI systems that can create content such as text, images, audio or code from instructions.</p></article>
-<article class="glossary-item" data-term="ai hallucination"><h3>AI hallucination</h3><p>An AI-generated response that presents incorrect or invented information as if it were true.</p></article>
-<article class="glossary-item" data-term="privacy"><h3>Privacy</h3><p>The ability to control how personal information is collected, used and shared.</p></article>
-<article class="glossary-item" data-term="cybersecurity"><h3>Cybersecurity</h3><p>Practices and technologies used to protect devices, systems, accounts and information.</p></article>
-<article class="glossary-item" data-term="e-waste"><h3>E-waste</h3><p>Discarded electronic devices and components that require responsible reuse, recycling or disposal.</p></article>
-<article class="glossary-item" data-term="digital citizenship"><h3>Digital citizenship</h3><p>Responsible, safe, respectful and informed participation in digital life.</p></article>
-</div></div></section></main>
+<main class="glossary-page">
+<section class="glossary-hero">
+<div class="eyebrow">QUICK REFERENCE</div>
+<h1>Digital Literacy <em>Glossary</em></h1>
+<p>Search, filter and explore essential terms used across the Hub.</p>
+</section>
+<section class="section" style="padding-top:0;">
+<div class="section-inner">
+<div class="glossary-controls">
+<div class="glossary-search"><input id="glossarySearch" type="search" placeholder="Search the glossary..." aria-label="Search glossary"></div>
+<div class="glossary-az" id="glossaryAZ" role="navigation" aria-label="Alphabetical navigation"></div>
+<div class="glossary-categories" id="glossaryCategories" role="group" aria-label="Filter by category"></div>
+<div class="glossary-count" id="glossaryCount" aria-live="polite"></div>
+<div class="glossary-grid" id="glossaryGrid"></div>
+<div class="glossary-empty" id="glossaryEmpty">
+<h3>No glossary terms found.</h3>
+<p>Try a different search.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
 <footer class="footer"><div class="footer-inner"><div class="footer-brand"><strong>Digital Literacy Hub</strong><p>Learn. Think. Create. Connect.</p></div>
 <div class="footer-links"><div><h4>Explore</h4><a href="index.html">Home</a><a href="skills.html">Learn</a><a href="interactive.html">Interactive</a><a href="challenge.html">Assessment</a></div>
 <div><h4>Discover</h4><a href="people.html">People</a><a href="planet.html">Planet</a><a href="prosperity.html">Prosperity</a><a href="zimbabwe.html">Zimbabwe</a></div>
 <div><h4>More</h4><a href="resources.html">Resources</a><a href="about.html">About</a><a href="glossary.html">Glossary</a><a href="pledge.html">Digital Pledge</a></div></div></div>
 <div class="footer-bottom"><span>&copy; 2026 Digital Literacy Hub.</span><span>St Columba's High School</span></div></footer>
-<script src="js/icons.js"></script><script src="js/main.js"></script><script>
-(function(){const input=document.getElementById('glossarySearch'),items=[...document.querySelectorAll('.glossary-item')];input.addEventListener('input',()=>{const q=input.value.toLowerCase().trim();items.forEach(i=>i.hidden=!((i.dataset.term+' '+i.textContent).toLowerCase().includes(q)));});})();
-</script></body></html>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+(function(){
+var GLOSSARY=[
+{term:"Digital Literacy",cat:"Core Digital Literacy",def:"The ability to find, evaluate, create and communicate information using digital technologies.",ex:"A student who can safely search for information, check if a source is reliable, and share their work online is practising digital literacy."},
+{term:"Digital Device",cat:"Core Digital Literacy",def:"An electronic tool that processes data and connects to the internet or other devices.",ex:"Smartphones, laptops, tablets and desktop computers are all common digital devices."},
+{term:"Digital Skills",cat:"Core Digital Literacy",def:"Practical abilities needed to use digital tools, such as typing, searching, and creating documents.",ex:"Knowing how to write an email, edit a photo, or use a spreadsheet are useful digital skills."},
+{term:"Internet",cat:"Core Digital Literacy",def:"A global network of connected computers that allows people to share information and communicate.",ex:"You use the internet when you visit a website, stream a video, or send a message."},
+{term:"Website",cat:"Core Digital Literacy",def:"A collection of related web pages hosted under one address on the internet.",ex:"A school's website might have pages for news, classes, and contact information."},
+{term:"Web Browser",cat:"Core Digital Literacy",def:"Software used to access and view websites on the internet.",ex:"Chrome, Firefox, Safari, and Edge are popular web browsers."},
+{term:"Search Engine",cat:"Core Digital Literacy",def:"A tool that helps you find websites and information by searching for keywords.",ex:"Typing 'weather today' into Google shows you relevant weather websites."},
+{term:"URL",cat:"Core Digital Literacy",def:"The address of a specific webpage on the internet, also called a web address.",ex:"www.example.com is a URL that takes you to a particular website."},
+{term:"Download",cat:"Core Digital Literacy",def:"Copying a file or data from the internet to your device.",ex:"When you save a PDF from a website to your computer, you are downloading it."},
+{term:"Upload",cat:"Core Digital Literacy",def:"Copying a file or data from your device to the internet.",ex:"Posting a photo on social media uploads it from your phone to the internet."},
 
+{term:"Cybersecurity",cat:"Online Safety & Cybersecurity",def:"The practice of protecting devices, accounts, and data from digital attacks.",ex:"Using a strong password and keeping software updated are good cybersecurity habits."},
+{term:"Cybercrime",cat:"Online Safety & Cybersecurity",def:"A crime that involves a computer or the internet, such as fraud or hacking.",ex:"Stealing someone's bank details through a fake website is a form of cybercrime."},
+{term:"Phishing",cat:"Online Safety & Cybersecurity",def:"A trick where attackers send fake messages to steal personal information.",ex:"An email pretending to be your bank asking for your password is likely phishing."},
+{term:"Scam",cat:"Online Safety & Cybersecurity",def:"A dishonest scheme designed to cheat people out of money or information.",ex:"A message saying you won a prize but must pay a fee is a common scam."},
+{term:"Malware",cat:"Online Safety & Cybersecurity",def:"Software created to damage, spy on, or gain unauthorised access to a device.",ex:"A virus that deletes your files after you open a suspicious email attachment is malware."},
+{term:"Virus",cat:"Online Safety & Cybersecurity",def:"A type of malware that copies itself to other files and can spread to other devices.",ex:"A computer virus might slow down your device or corrupt your documents."},
+{term:"Firewall",cat:"Online Safety & Cybersecurity",def:"A security system that monitors and controls network traffic to block unauthorised access.",ex:"Your computer's firewall helps prevent hackers from connecting to it over the internet."},
+{term:"Antivirus",cat:"Online Safety & Cybersecurity",def:"Software that detects, blocks, and removes malware from your device.",ex:"Running an antivirus scan can find and remove harmful software from your computer."},
+{term:"Two-Factor Authentication (2FA)",cat:"Online Safety & Cybersecurity",def:"A security method that requires two different forms of verification to log in.",ex:"Entering your password and then a code sent to your phone is two-factor authentication."},
+{term:"Strong Password",cat:"Online Safety & Cybersecurity",def:"A password that is long, unique, and hard for others to guess.",ex:"A strong password might be a passphrase like 'Sunset!River42Book' rather than '123456'."},
+
+{term:"Digital Footprint",cat:"Privacy & Digital Identity",def:"The trail of information you leave behind through your online activities.",ex:"Your digital footprint includes posts, photos, comments, and websites you visit."},
+{term:"Digital Identity",cat:"Privacy & Digital Identity",def:"The way you are represented online through accounts, profiles, and shared information.",ex:"Your digital identity includes your email, social media profiles, and any accounts you hold."},
+{term:"Personal Information",cat:"Privacy & Digital Identity",def:"Details that can identify a specific person, such as name, address, or phone number.",ex:"Your home address and phone number are personal information that should be shared carefully."},
+{term:"Privacy",cat:"Privacy & Digital Identity",def:"Your ability to control how your personal information is collected, used, and shared.",ex:"Adjusting your social media settings to limit who sees your posts protects your privacy."},
+{term:"Data Protection",cat:"Privacy & Digital Identity",def:"The practice of safeguarding personal data from unauthorised access or misuse.",ex:"Companies use data protection measures like encryption to keep customer information safe."},
+{term:"Cookies",cat:"Privacy & Digital Identity",def:"Small files stored on your device by websites to remember your preferences and activity.",ex:"A cookie might remember your login details so you do not need to re-enter them on every visit."},
+{term:"Online Reputation",cat:"Privacy & Digital Identity",def:"How others perceive you based on your online activity and presence.",ex:"Employers sometimes check social media profiles, so your online reputation matters."},
+
+{term:"Social Media",cat:"Social Media & Communication",def:"Platforms that allow people to create, share, and interact with content and each other online.",ex:"Facebook, Instagram, TikTok, and X are examples of social media platforms."},
+{term:"Cyberbullying",cat:"Social Media & Communication",def:"Using digital tools to harass, threaten, or embarrass someone repeatedly.",ex:"Sending hurtful messages or spreading rumours about someone online is cyberbullying."},
+{term:"Misinformation",cat:"Social Media & Communication",def:"False or inaccurate information shared without the intent to deceive.",ex:"Sharing a news article with a wrong date without knowing it is wrong is spreading misinformation."},
+{term:"Disinformation",cat:"Social Media & Communication",def:"False information that is deliberately created or shared to mislead people.",ex:"A fake news article created to influence an election is disinformation."},
+{term:"Digital Citizenship",cat:"Social Media & Communication",def:"Responsible, safe, respectful, and informed participation in digital life.",ex:"Treating others kindly in online discussions and respecting copyright are parts of digital citizenship."},
+{term:"Netiquette",cat:"Social Media & Communication",def:"The acceptable code of behaviour when communicating online.",ex:"Using polite language and avoiding all caps in emails is good netiquette."},
+{term:"Content Creator",cat:"Social Media & Communication",def:"A person who produces and shares digital content such as videos, articles, or podcasts.",ex:"A YouTuber who makes educational videos is a content creator."},
+
+{term:"Artificial Intelligence (AI)",cat:"AI & Emerging Technology",def:"Computer systems designed to perform tasks that normally require human intelligence.",ex:"Voice assistants like Siri and Alexa use AI to understand and respond to your questions."},
+{term:"Generative AI",cat:"AI & Emerging Technology",def:"AI that can create new content such as text, images, audio, or code from instructions.",ex:"ChatGPT is a generative AI tool that can write essays, stories, and summaries from prompts."},
+{term:"Chatbot",cat:"AI & Emerging Technology",def:"A computer program that simulates conversation with a human, often for customer support.",ex:"A chatbot on a shopping website can help you find products and answer common questions."},
+{term:"Algorithm",cat:"AI & Emerging Technology",def:"A set of step-by-step instructions that a computer follows to solve a problem.",ex:"A search engine uses algorithms to rank and display the most relevant results."},
+{term:"Deepfake",cat:"AI & Emerging Technology",def:"A manipulated image, video, or audio created using AI to look real but be fake.",ex:"A deepfake video might make someone appear to say words they never actually said."},
+{term:"AI Bias",cat:"AI & Emerging Technology",def:"Unfair or prejudiced outcomes caused by biases in the data or design of an AI system.",ex:"If a hiring AI was trained mostly on male applicants, it may unfairly favour male candidates."},
+{term:"Prompt",cat:"AI & Emerging Technology",def:"A text instruction or input given to a generative AI tool to produce a response.",ex:"Writing 'Write a summary of this article' is a prompt for an AI tool."},
+{term:"Automation",cat:"AI & Emerging Technology",def:"Using technology to perform tasks with minimal human involvement.",ex:"Email filters that automatically sort incoming messages are an example of automation."},
+{term:"AI Hallucination",cat:"AI & Emerging Technology",def:"An AI response that presents incorrect or invented information as if it were true.",ex:"An AI might invent a fake fact or cite a source that does not actually exist."},
+
+{term:"Media Literacy",cat:"Information & Media Literacy",def:"The ability to access, evaluate, and create media in a critical and informed way.",ex:"Being able to tell the difference between a reliable news report and an opinion piece is media literacy."},
+{term:"Information Literacy",cat:"Information & Media Literacy",def:"The ability to find, evaluate, and use information effectively and responsibly.",ex:"A student who checks multiple sources before accepting a fact is information literate."},
+{term:"Fact-Checking",cat:"Information & Media Literacy",def:"The process of verifying whether a piece of information is true or false.",ex:"Websites like Snopes help you fact-check claims and rumours you see online."},
+{term:"Fake News",cat:"Information & Media Literacy",def:"False news stories that are designed to look real and often spread quickly online.",ex:"A headline about a celebrity that sounds too dramatic may be fake news."},
+{term:"Source",cat:"Information & Media Literacy",def:"The origin or author of a piece of information.",ex:"A government health website is usually a more reliable source than an anonymous blog."},
+{term:"Credibility",cat:"Information & Media Literacy",def:"The quality of being trustworthy and believable.",ex:"A well-known newspaper with clear editorial standards has high credibility."},
+{term:"Digital Manipulation",cat:"Information & Media Literacy",def:"Changing digital content such as images, audio, or text to mislead or deceive.",ex:"Cropping a photo to remove important context is a form of digital manipulation."},
+
+{term:"Cloud Computing",cat:"Everyday Technology",def:"Using internet-based servers to store, manage, and process data instead of your own device.",ex:"Google Drive saves your files on the cloud so you can access them from any device."},
+{term:"Cloud Storage",cat:"Everyday Technology",def:"A service that stores your files on remote servers accessed through the internet.",ex:"Backing up your photos to iCloud or Google Photos is cloud storage."},
+{term:"Wi-Fi",cat:"Everyday Technology",def:"A technology that allows devices to connect to the internet wirelessly using radio waves.",ex:"Connecting your phone to the internet at home without a cable uses Wi-Fi."},
+{term:"Bluetooth",cat:"Everyday Technology",def:"A short-range wireless technology for connecting nearby devices.",ex:"Connecting wireless headphones to your phone uses Bluetooth."},
+{term:"QR Code",cat:"Everyday Technology",def:"A square barcode that stores information and can be read using a phone camera.",ex:"Scanning a QR code at a restaurant might open the digital menu on your phone."},
+{term:"Operating System",cat:"Everyday Technology",def:"The main software that manages a device's hardware and software resources.",ex:"Windows, macOS, Android, and iOS are all operating systems."},
+{term:"App/Application",cat:"Everyday Technology",def:"A software program designed to perform a specific task on a device.",ex:"A weather app on your phone shows you the forecast for your location."},
+{term:"Database",cat:"Everyday Technology",def:"An organised collection of information stored and accessed electronically.",ex:"A library's online catalogue is a database where you can search for books."},
+{term:"E-waste",cat:"Everyday Technology",def:"Discarded electronic devices and components that need responsible reuse, recycling, or disposal.",ex:"Old phones and laptops that are thrown away improperly become e-waste."},
+
+{term:"Account",cat:"Common Digital Terms",def:"A personal profile or access point to a digital service or platform.",ex:"Your Google account gives you access to Gmail, Google Drive, and other services."},
+{term:"Username",cat:"Common Digital Terms",def:"A unique name used to log into an online account.",ex:"Your username might be your initials or a name you choose for a website."},
+{term:"Password",cat:"Common Digital Terms",def:"A secret word or phrase used to verify your identity and access an account.",ex:"A password should be kept private and never shared with others."},
+{term:"Login",cat:"Common Digital Terms",def:"The process of entering your credentials to access an online account.",ex:"Typing your username and password on a website to enter your account is logging in."},
+{term:"Logout",cat:"Common Digital Terms",def:"The process of ending a session and securing your account when you finish using it.",ex:"Always log out of public or shared computers after using them."},
+{term:"Verification",cat:"Common Digital Terms",def:"The process of confirming your identity, often through a code or biometric check.",ex:"Entering a code sent to your phone to prove it is you is verification."},
+{term:"Notification",cat:"Common Digital Terms",def:"A message or alert from an app or website that appears on your device.",ex:"A notification on your phone might tell you about a new email or message."},
+{term:"Link",cat:"Common Digital Terms",def:"A clickable element that takes you to another webpage, file, or location.",ex:"Clicking a blue underlined word in an email usually opens a link."},
+{term:"Attachment",cat:"Common Digital Terms",def:"A file sent along with an email or message.",ex:"A resume sent as a PDF through email is an attachment."},
+{term:"Spam",cat:"Common Digital Terms",def:"Unwanted or unsolicited messages, usually sent in bulk, often for advertising or fraud.",ex:"Your email spam folder collects junk messages you did not ask for."},
+{term:"Backup",cat:"Common Digital Terms",def:"A copy of your data stored separately so it can be recovered if lost.",ex:"Saving your documents to an external hard drive is a backup."},
+{term:"Update",cat:"Common Digital Terms",def:"A new version of software that fixes bugs, adds features, or improves security.",ex:"Updating your phone's operating system may improve its performance and safety."},
+{term:"Software",cat:"Common Digital Terms",def:"Programs and instructions that tell a computer what to do.",ex:"A web browser, a game, and a word processor are all software."},
+{term:"Hardware",cat:"Common Digital Terms",def:"The physical parts of a computer or device that you can touch.",ex:"The screen, keyboard, and processor are hardware components."},
+{term:"Network",cat:"Common Digital Terms",def:"A group of connected devices that can share information and resources.",ex:"Your home Wi-Fi network connects your phone, laptop, and smart TV together."},
+{term:"Mobile Data",cat:"Common Digital Terms",def:"Internet access provided through a cellular network on a mobile device.",ex:"Using the internet on your phone while away from Wi-Fi uses mobile data."}
+];
+var categories=["All Categories","Core Digital Literacy","Online Safety & Cybersecurity","Privacy & Digital Identity","Social Media & Communication","AI & Emerging Technology","Information & Media Literacy","Everyday Technology","Common Digital Terms"];
+var grid=document.getElementById("glossaryGrid");
+var searchInput=document.getElementById("glossarySearch");
+var azEl=document.getElementById("glossaryAZ");
+var catEl=document.getElementById("glossaryCategories");
+var countEl=document.getElementById("glossaryCount");
+var emptyEl=document.getElementById("glossaryEmpty");
+var activeCat="All Categories";
+var activeLetter="";
+
+function renderCategories(){catEl.innerHTML="";categories.forEach(function(c){var b=document.createElement("button");b.textContent=c;b.type="button";if(c===activeCat)b.className="active";b.addEventListener("click",function(){activeCat=c;activeLetter="";renderAZ();renderItems();});catEl.appendChild(b);});}
+function renderAZ(){azEl.innerHTML="";var used={};GLOSSARY.forEach(function(item){var l=item.term.charAt(0).toUpperCase();if(!used[l]){used[l]=true;var a=document.createElement("a");a.href="#";a.textContent=l;a.setAttribute("role","button");a.setAttribute("tabindex","0");if(l===activeLetter)a.className="active";a.addEventListener("click",function(e){e.preventDefault();activeLetter=(activeLetter===l)?"":l;renderAZ();renderItems();});a.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();activeLetter=(activeLetter===l)?"":l;renderAZ();renderItems();}});azEl.appendChild(a);}});}
+function renderItems(){var q=searchInput.value.toLowerCase().trim();var filtered=GLOSSARY.filter(function(item){var matchCat=activeCat==="All Categories"||item.cat===activeCat;var matchLetter=!activeLetter||item.term.charAt(0).toUpperCase()===activeLetter;var matchQ=!q||(item.term+" "+item.def+" "+(item.ex||"")).toLowerCase().includes(q);return matchCat&&matchLetter&&matchQ;});
+filtered.sort(function(a,b){return a.term.localeCompare(b.term);});
+grid.innerHTML="";countEl.textContent="Showing "+filtered.length+" term"+(filtered.length!==1?"s":"")+"";
+if(filtered.length===0){emptyEl.classList.add("visible");grid.style.display="none";return;}else{emptyEl.classList.remove("visible");grid.style.display="grid";}
+filtered.forEach(function(item){var card=document.createElement("article");card.className="glossary-item";card.setAttribute("tabindex","0");card.setAttribute("data-term",item.term.toLowerCase().replace(/[^a-z0-9]+/g," "));card.innerHTML='<span class="term-tag">'+item.cat+'</span><h3>'+item.term+'</h3><p class="definition">'+item.def+'</p>'+(item.ex?'<p class="example">Example: '+item.ex+'</p>':'')+'</article>';grid.appendChild(card);});}
+searchInput.addEventListener("input",renderItems);
+document.addEventListener("DOMContentLoaded",function(){renderCategories();renderAZ();renderItems();});
+})();
+</script>
+</body>
+</html>
