@@ -13,18 +13,17 @@
 .glossary-page .glossary-hero p { color:#6B7280; font-size:16px; max-width:520px; margin:0 auto; }
 
 .glossary-page .glossary-controls { max-width:900px; margin:0 auto 24px; padding:0 24px; }
-.glossary-page .glossary-search { max-width:720px; margin:0 auto 20px; }
+.glossary-page .glossary-search { max-width:720px; margin:0 auto 20px; position:relative; }
 .glossary-page .glossary-search input {
-    width:100%; padding:14px 18px 14px 44px; border:1.5px solid #dce4df; border-radius:12px;
+    width:100%; padding:14px 18px 14px 42px; border:1.5px solid #dce4df; border-radius:12px;
     background:#FFFFFF; color:#1F2937; font-size:15px; outline:none; transition:border-color .15s, box-shadow .15s;
     -webkit-appearance:none; appearance:none;
 }
 .glossary-page .glossary-search input:focus { border-color:#006B3F; box-shadow:0 0 0 3px rgba(0,107,63,.12); }
-.glossary-page .glossary-search { position:relative; }
 .glossary-page .glossary-search::before {
-    content:""; position:absolute; left:38px; top:50%; transform:translateY(-50%);
+    content:""; position:absolute; left:15px; top:50%; transform:translateY(-50%);
     width:18px; height:18px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
-    background-size:contain; background-repeat:no-repeat; pointer-events:none;
+    background-size:contain; background-repeat:no-repeat; pointer-events:none; z-index:1;
 }
 .glossary-page .glossary-az { display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin-bottom:16px; }
 .glossary-page .glossary-az a {
