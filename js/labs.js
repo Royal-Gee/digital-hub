@@ -231,6 +231,8 @@
                 btn.disabled = true;
 
                 feedback.className = 'scenario-feedback show ' + (isCorrect ? 'success' : 'warning');
+                var strong = feedback.querySelector('strong');
+                if (strong) strong.textContent = isCorrect ? 'Correct.' : 'Not quite.';
             });
         });
     }
