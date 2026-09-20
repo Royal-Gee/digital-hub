@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Practise cybersecurity skills: phishing detection, password strength, digital footprint awareness, and recognising online scams.">
+    <title>Safety Lab | Digital Literacy Hub</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topbar">Learn · Think · Create · Connect <strong>Safety Lab</strong></div>
+<header class="header">
+    <a class="brand" href="index.html">
+        <span class="brand-mark"><img src="assets/digital-literacy-logo.svg" alt="Digital Literacy Hub logo"></span>
+        <span class="brand-text"><strong>Digital Literacy Hub</strong><small>Learn · Think · Create · Connect</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span data-icon="menu" style="width:24px;height:24px;display:inline-block;"></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <div class="mobile-drawer-head">
+            <div class="mobile-drawer-brand">
+                <img src="assets/digital-literacy-logo.svg" alt="" width="38" height="38">
+                <span></span>
+            </div>
+            <button class="drawer-close" type="button" aria-label="Close navigation">×</button>
+        </div>
+        <a href="index.html" data-nav-key="home">Home</a>
+        <a href="skills.html" data-nav-key="learn">Learn</a>
+        <a href="interactive.html" data-nav-key="interactive">Interactive</a>
+        <a href="challenge.html" data-nav-key="assessment">Assessment</a>
+        <a href="progress.html" data-nav-key="progress">My Progress</a>
+        <a href="prosperity.html" data-nav-key="future">Digital Future</a>
+        <a href="about.html" data-nav-key="about">About</a>
+        <a href="glossary.html" data-nav-key="glossary">Glossary</a>
+        <div class="nav-more-label">MORE</div>
+        <div class="nav-more-links">
+            <a href="people.html">People</a>
+            <a href="planet.html">Planet</a>
+            <a href="zimbabwe.html">Zimbabwe</a>
+            <a href="resources.html">Resources</a>
+        </div>
+    </nav>
+    <div class="nav-backdrop" aria-hidden="true"></div>
+    <a class="nav-cta" href="challenge.html">Take Challenge</a>
+</header>
+<main>
+    <section class="page-hero">
+        <div class="eyebrow">INTERACTIVE PRACTICE</div>
+        <h1>Safety starts <em>before the click.</em></h1>
+        <p>Practise recognising suspicious messages, building stronger password habits, and understanding the long-term impact of your digital footprint.</p>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <div class="lab-grid">
+                <article class="lab-card reveal">
+                    <div class="icon"><span data-icon="shield" style="width:22px;height:22px;display:inline-block;"></span></div>
+                    <h3>Phishing Detector</h3>
+                    <p><strong>Message:</strong> "Congratulations! You have won $500. Send your OTP to claim your prize."</p>
+                    <p>Is this safe?</p>
+                    <div class="actions">
+                        <button class="btn primary" data-phish="safe">Pause and Verify</button>
+                        <button class="btn ghost" data-phish="unsafe">Click and Respond</button>
+                    </div>
+                    <div id="phish-feedback" class="feedback">Choose a response to learn about the warning signs.</div>
+                </article>
+
+                <article class="lab-card reveal delay-1">
+                    <div class="icon"><span data-icon="lock" style="width:22px;height:22px;display:inline-block;"></span></div>
+                    <h3>Password Lab</h3>
+                    <p>Type a <em>fictional</em> sample password to test its strength. <strong>Never enter a real password.</strong></p>
+                    <input id="passwordInput" type="text" autocomplete="off" placeholder="Type a sample password..." aria-label="Sample password for testing">
+                    <div class="password-bar"><i id="pw-bar" style="width:0%"></i></div>
+                    <div id="pw-result" style="font-size:14px;font-weight:600;">No password entered</div>
+                    <div id="pw-detail" style="font-size:12px;color:var(--muted);margin-top:6px;">Start typing to see feedback.</div>
+                </article>
+
+                <article class="lab-card reveal">
+                    <div class="icon"><span data-icon="eye" style="width:22px;height:22px;display:inline-block;"></span></div>
+                    <h3>Digital Footprint</h3>
+                    <p>Select the online actions you take. Your footprint score updates instantly. Nothing is stored or sent anywhere.</p>
+                    <div id="footprint">
+                        <div class="footprint-total" style="font-size:14px;color:var(--muted);margin-bottom:8px;">Total impact: <strong id="footprint-total">0</strong></div>
+                        <div id="footprint-result" class="feedback">Select actions to see your impact level.</div>
+                    </div>
+                </article>
+
+                <article class="lab-card reveal delay-1">
+                    <div class="icon"><span data-icon="alert" style="width:22px;height:22px;display:inline-block;"></span></div>
+                    <h3>Online Scams</h3>
+                    <p>Recognise common scam patterns:</p>
+                    <div style="font-size:14px;color:var(--muted);line-height:1.8;">
+                        <p><strong>Fake giveaways:</strong> "Claim your prize" messages that ask for personal details.</p>
+                        <p><strong>Impersonation:</strong> Someone pretending to be a trusted person or institution.</p>
+                        <p><strong>Suspicious links:</strong> Links that lead to fake login pages or download malware.</p>
+                        <p><strong>Fake job offers:</strong> Offers requiring upfront payment or personal documents.</p>
+                        <p><strong>Account recovery scams:</strong> Messages claiming your account will be deleted unless you act now.</p>
+                        <p><strong>Payment scams:</strong> Unusual requests to send money via gift cards or wire transfer.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--paper-warm);">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <h2>Quick safety checklist</h2>
+                <p>Apply these practices every day.</p>
+            </div>
+            <div class="cards-2">
+                <div class="info-card reveal">
+                    <h3>Daily habits</h3>
+                    <p>Lock your devices, keep software updated, log out of shared computers, and be cautious with public Wi-Fi. Small consistent habits build strong security.</p>
+                </div>
+                <div class="info-card reveal delay-1">
+                    <h3>Think before sharing</h3>
+                    <p>Consider who can see what you post, how it might be used, and whether it should be shared at all. Your information has value — protect it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer"><div class="footer-inner">
+        <div class="footer-brand">
+            <strong>Digital Literacy Hub</strong>
+            <p>Learn. Think. Create. Connect.</p>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="people.html">People</a>
+                <a href="planet.html">Planet</a>
+                <a href="prosperity.html">Prosperity</a>
+            </div>
+            <div>
+                <h4>Learn</h4>
+                <a href="skills.html">Digital Skills</a>
+                <a href="safety.html">Safety Lab</a>
+                <a href="information.html">Information Lab</a>
+                <a href="ai.html">AI Lab</a>
+            </div>
+            <div>
+                <h4>More</h4>
+                <a href="challenge.html">Challenge</a>
+                <a href="zimbabwe.html">Zimbabwe</a>
+                <a href="resources.html">Resources</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Digital Literacy Hub. All rights reserved.</span>
+        <span>St Columba's High School</span>
+    </div>
+</footer>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script src="js/labs.js"></script>
+</body>
+</html>
+

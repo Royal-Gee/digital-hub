@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Review your Digital Literacy Hub assessment progress and recommended learning areas.">
+<title>My Progress | Digital Literacy Hub</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<div class="topbar">Your learning journey <strong>My Progress</strong></div>
+<header class="header">
+<a class="brand" href="index.html"><span class="brand-mark"><img src="assets/digital-literacy-logo.svg" alt="Digital Literacy Hub logo"></span><span class="brand-text"><strong>Digital Literacy Hub</strong><small>Learn · Think · Create · Connect</small></span></a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span data-icon="menu" style="width:24px;height:24px;display:inline-block;"></span></button>
+<nav class="nav" id="site-nav" aria-label="Main navigation">
+        <div class="mobile-drawer-head">
+            <div class="mobile-drawer-brand">
+                <img src="assets/digital-literacy-logo.svg" alt="" width="38" height="38">
+                <span></span>
+            </div>
+            <button class="drawer-close" type="button" aria-label="Close navigation">×</button>
+        </div>
+        <a href="index.html" data-nav-key="home">Home</a>
+        <a href="skills.html" data-nav-key="learn">Learn</a>
+        <a href="interactive.html" data-nav-key="interactive">Interactive</a>
+        <a href="challenge.html" data-nav-key="assessment">Assessment</a>
+        <a href="prosperity.html" data-nav-key="future">Digital Future</a>
+        <a href="about.html" data-nav-key="about">About</a>
+        <a href="glossary.html" data-nav-key="glossary">Glossary</a>
+        <div class="nav-more-label">MORE</div>
+        <div class="nav-more-links">
+            <a href="people.html">People</a>
+            <a href="planet.html">Planet</a>
+            <a href="zimbabwe.html">Zimbabwe</a>
+            <a href="resources.html">Resources</a>
+        </div>
+    </nav>
+    <div class="nav-backdrop" aria-hidden="true"></div>
+<a class="nav-cta" href="challenge.html">Take Assessment</a></header>
+<main>
+<section class="page-hero"><div class="eyebrow">LEARNING DASHBOARD</div><h1>My <em>Progress</em></h1><p>Your assessment results are stored in this browser so you can return and see the areas you may want to strengthen.</p></section>
+<section class="section"><div class="section-inner">
+<div id="progressState" class="progress-dashboard"></div>
+</div></section>
+</main>
+<footer class="footer"><div class="footer-inner"><div class="footer-brand"><strong>Digital Literacy Hub</strong><p>Learn. Think. Create. Connect.</p></div>
+<div class="footer-links"><div><h4>Explore</h4><a href="index.html">Home</a><a href="skills.html">Learn</a><a href="interactive.html">Interactive</a><a href="challenge.html">Assessment</a></div>
+<div><h4>Discover</h4><a href="people.html">People</a><a href="planet.html">Planet</a><a href="prosperity.html">Prosperity</a><a href="zimbabwe.html">Zimbabwe</a></div>
+<div><h4>More</h4><a href="resources.html">Resources</a><a href="about.html">About</a><a href="glossary.html">Glossary</a><a href="pledge.html">Digital Pledge</a></div></div></div>
+<div class="footer-bottom"><span>&copy; 2026 Digital Literacy Hub.</span><span>St Columba's High School</span></div></footer>
+<script src="js/icons.js"></script><script src="js/main.js"></script>
+<script>
+(function(){
+ const box=document.getElementById('progressState');
+ let data=null; try{data=JSON.parse(localStorage.getItem('dlhAssessment'))}catch(e){}
+ if(!data){box.innerHTML='<div class="callout"><div><div class="eyebrow">NO RESULT YET</div><h2>Start your first assessment.</h2><p>Complete the Digital Literacy Assessment to create your learning profile. You can return here afterwards.</p></div><a class="btn primary" href="challenge.html">Start Assessment</a></div>';return;}
+ const cats=data.categories||{}; const entries=Object.entries(cats);
+ const cards=entries.map(([name,pct])=>'<article class="progress-card"><div class="progress-card-top"><strong>'+name+'</strong><span>'+pct+'%</span></div><div class="progress"><i style="width:'+pct+'%"></i></div><p>'+ (pct>=80?'Strong current understanding. Keep applying it in real situations.':pct>=60?'Good foundation. Explore the related lab to strengthen it further.':'A useful area to focus on next. Try the related learning activity.') +'</p></article>').join('');
+ const badge=data.percent>=80?'Digital Literacy Champion':data.percent>=60?'Digital Literacy Advocate':'Digital Learner';
+ box.innerHTML='<div class="progress-summary"><div class="progress-summary-score"><span>Latest assessment</span><strong>'+data.score+'/'+data.total+'</strong><small>'+data.percent+'% overall · '+badge+'</small></div><div class="progress-summary-copy"><div class="eyebrow">WHAT NEXT?</div><h2>Keep learning from your results.</h2><p>Use the category bars below to decide which topic to explore next. Your result is a learning guide, not a permanent label.</p><a class="btn small primary" href="challenge.html">Retake Assessment</a></div></div><div class="section-header" style="margin-top:42px;"><h2>Skill profile</h2><p>Category-level performance from your latest assessment.</p></div><div class="progress-grid">'+cards+'</div>';
+})();
+</script></body></html>
+
