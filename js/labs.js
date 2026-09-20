@@ -127,7 +127,7 @@
                 var result = document.getElementById(resultId);
                 if (!result) return;
 
-                var isCorrect = btn.dataset.fact === 'true';
+                var isCorrect = btn.dataset.correct === 'true';
                 container.querySelectorAll('[data-fact]').forEach(function(b) {
                     if (b !== btn) { b.disabled = true; b.style.opacity = '0.5'; }
                 });
@@ -149,7 +149,7 @@
                 var result = document.getElementById(id);
                 if (!result) return;
 
-                var isReliable = btn.dataset.reliable === 'true';
+                var isCorrect = btn.dataset.correct === 'true';
                 var container = btn.closest('.lab-card');
                 container.querySelectorAll('[data-source-check]').forEach(function(b) {
                     if (b !== btn) { b.disabled = true; b.style.opacity = '0.5'; }
@@ -160,10 +160,13 @@
                 if (checklist) {
                     checklist.querySelectorAll('li').forEach(function(li) {
                         var ind = li.querySelector('.indicator');
-                        if (ind) { ind.className = 'indicator ' + (isReliable ? 'good' : 'bad'); }
+                        if (ind) { ind.className = 'indicator ' + (isCorrect ? 'good' : 'bad'); }
                     });
                 }
-                result.className = 'feedback ' + (isReliable ? 'success' : 'error') + ' show';
+                result.className = 'feedback ' + (isCorrect ? 'success' : 'error') + ' show';
+                result.innerHTML = isCorrect
+                    ? '<strong>Correct.</strong> Good judgement. Always check for named authorship, publication date, cited evidence, and links to official resources.'
+                    : '<strong>Not quite.</strong> This source lacks key reliability indicators: no named author, no publication date, no evidence, and no verifiable references.';
             });
         });
     }

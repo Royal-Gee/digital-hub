@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Practise fact-checking, source evaluation, and critical thinking with interactive activities.">
     <title>Information Lab | Digital Literacy Hub</title>
-    <link rel="icon" href="assets/dlh.png" type="image/svg+xml">
+    <link rel="icon" href="assets/dlh.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -65,8 +65,8 @@
                     <h3>Scientists say this one trick fixes every problem.</h3>
                     <p>No named source, no date, and no evidence are provided.</p>
                     <div class="actions">
-                        <button class="btn primary" data-fact="true" data-fact-result="fact-1">Treat as verified</button>
-                        <button class="btn ghost" data-fact="false" data-fact-result="fact-1">Investigate first</button>
+                        <button class="btn primary" data-fact="true" data-fact-result="fact-1" data-correct="false">Treat as verified</button>
+                        <button class="btn ghost" data-fact="false" data-fact-result="fact-1" data-correct="true">Investigate first</button>
                     </div>
                     <div id="fact-1" class="feedback">Choose the safer approach.</div>
                 </div>
@@ -75,8 +75,8 @@
                     <h3>Official report: New study confirms health benefits of a specific fruit.</h3>
                     <p>The report cites a named university, includes the publication date, and links to peer-reviewed research.</p>
                     <div class="actions">
-                        <button class="btn primary" data-fact="true" data-fact-result="fact-2">Treat as verified</button>
-                        <button class="btn ghost" data-fact="false" data-fact-result="fact-2">Investigate first</button>
+                        <button class="btn primary" data-fact="true" data-fact-result="fact-2" data-correct="true">Treat as verified</button>
+                        <button class="btn ghost" data-fact="false" data-fact-result="fact-2" data-correct="false">Investigate first</button>
                     </div>
                     <div id="fact-2" class="feedback">Choose the safer approach.</div>
                 </div>
@@ -97,8 +97,8 @@
                     <h3>"Health Daily News" article</h3>
                     <p>A blog post with no author listed, no publication date, and several spelling errors. It claims a supplement cures multiple unrelated conditions.</p>
                     <div class="actions">
-                        <button class="btn primary" data-source-check="rel-1" data-reliable="false">Unreliable</button>
-                        <button class="btn ghost" data-source-check="rel-1" data-reliable="true">Reliable</button>
+                        <button class="btn primary" data-source-check="rel-1" data-reliable="false" data-correct="true">Unreliable</button>
+                        <button class="btn ghost" data-source-check="rel-1" data-reliable="true" data-correct="false">Reliable</button>
                     </div>
                     <div id="rel-1" class="feedback">Select an assessment.</div>
                 </div>
@@ -107,8 +107,8 @@
                     <h3>Government health portal</h3>
                     <p>A page with a named department as author, a clear publication date, cited studies, and links to related official resources.</p>
                     <div class="actions">
-                        <button class="btn primary" data-source-check="rel-2" data-reliable="true">Reliable</button>
-                        <button class="btn ghost" data-source-check="rel-2" data-reliable="false">Unreliable</button>
+                        <button class="btn primary" data-source-check="rel-2" data-reliable="true" data-correct="true">Reliable</button>
+                        <button class="btn ghost" data-source-check="rel-2" data-reliable="false" data-correct="false">Unreliable</button>
                     </div>
                     <div id="rel-2" class="feedback">Select an assessment.</div>
                 </div>
