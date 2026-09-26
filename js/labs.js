@@ -12,7 +12,7 @@
         initPeopleScenario();
     });
 
-    /* ── Phishing Detector ── */
+
     function initPhishingDetector() {
         var feedback = document.getElementById('phish-feedback');
         if (!feedback) return;
@@ -29,7 +29,6 @@
         });
     }
 
-    /* ── Password Lab ── */
     function initPasswordLab() {
         var input = document.getElementById('passwordInput');
         var resultEl = document.getElementById('pw-result');
@@ -37,36 +36,62 @@
         var detailEl = document.getElementById('pw-detail');
         if (!input) return;
 
+        if (resultEl) resultEl.setAttribute('aria-live', 'polite');
+
+        var COMMON = ['password', 'passw0rd', 'qwerty', 'letmein', 'welcome', 'admin', 'iloveyou', 'abc123', 'monkey', 'football', 'harare', 'zimbabwe', 'bulawayo'];
+
+        function assess(val) {
+            var lower = val.toLowerCase();
+            var words = val.split(/[\s\-_.]+/).filter(function(w) { return w.length > 1; });
+            var tips = [];
+            var score;
+
+            var allDigits = /^\d+$/.test(val);
+            var repeated = /^(.)\1+$/.test(val);
+            var sequence = /(0123|1234|2345|3456|4567|5678|6789|abcd|qwer|asdf)/.test(lower);
+            var common = COMMON.some(function(w) { return lower.indexOf(w) !== -1; });
+
+            if (val.length < 8) score = 0;
+            else if (val.length < 12) score = 1;
+            else if (val.length < 16) score = 2;
+            else score = 3;
+
+            if (val.length >= 16 && words.length >= 4) score = 4;
+
+            if (allDigits || repeated || sequence || common) {
+                score = Math.min(score, 1);
+                tips.push('avoid common words, names, and patterns like 1234 or qwerty');
+            }
+            if (val.length < 12) tips.push('length matters most: aim for 12 or more characters');
+            if (words.length < 4 && val.length < 16) tips.push('try a passphrase of four or more unrelated words');
+            tips.push('use a different password for every account');
+            return { score: score, tips: tips };
+        }
+
         input.addEventListener('input', function() {
             var val = input.value;
-            var score = 0;
-            var feedback = [];
-
-            if (val.length >= 12) { score++; }
-            else { feedback.push('Use at least 12 characters'); }
-
-            if (/[A-Z]/.test(val) && /[a-z]/.test(val)) { score++; }
-            else { feedback.push('Mix uppercase and lowercase letters'); }
-
-            if (/\d/.test(val)) { score++; }
-            else { feedback.push('Add numbers'); }
-
-            if (/[^A-Za-z0-9]/.test(val)) { score++; }
-            else { feedback.push('Add a special character like !@#$%'); }
-
-            if (val.length > 0 && val.length < 8) { score = Math.max(0, score - 1); }
-
             var labels = ['Very weak', 'Weak', 'Fair', 'Good', 'Strong'];
-            var colors = ['#b9473d', '#c4802a', '#c99b2e', '#087a5b', '#0b5d46'];
-            var idx = Math.min(score, 4);
+            var colors = ['#c62d2d', '#c25e00', '#a8620a', '#1b7f4b', '#0e2747'];
 
-            if (resultEl) { resultEl.textContent = labels[idx]; resultEl.style.color = colors[idx]; }
-            if (barEl) { barEl.style.width = (idx * 25) + '%'; barEl.style.background = colors[idx]; }
-            if (detailEl) { detailEl.textContent = feedback.length ? 'Tip: ' + feedback.join('; ') + '.' : 'This is a strong password pattern.'; }
+            if (!val) {
+                if (resultEl) { resultEl.textContent = 'No password entered'; resultEl.style.color = ''; }
+                if (barEl) { barEl.style.width = '0%'; }
+                if (detailEl) { detailEl.textContent = 'Start typing to see feedback.'; }
+                return;
+            }
+
+            var r = assess(val);
+            if (resultEl) { resultEl.textContent = labels[r.score]; resultEl.style.color = colors[r.score]; }
+            if (barEl) { barEl.style.width = (Math.max(r.score, 0.5) * 25) + '%'; barEl.style.background = colors[r.score]; }
+            if (detailEl) {
+                detailEl.textContent = r.score >= 4
+                    ? 'Long and hard to guess. Never reuse it, and never type a real password into a practice tool.'
+                    : 'Tip: ' + r.tips.slice(0, 3).join('; ') + '.';
+            }
         });
     }
 
-    /* ── Digital Footprint ── */
+
     function initDigitalFootprint() {
         var container = document.getElementById('footprint');
         if (!container) return;
@@ -118,7 +143,7 @@
         }
     }
 
-    /* ── Fact or Fake ── */
+
     function initFactOrFake() {
         document.querySelectorAll('[data-fact]').forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -141,7 +166,6 @@
         });
     }
 
-    /* ── Source Checker ── */
     function initSourceChecker() {
         document.querySelectorAll('[data-source-check]').forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -171,7 +195,6 @@
         });
     }
 
-    /* ── AI Spot the Problem ── */
     function initAISpotProblem() {
         document.querySelectorAll('[data-ai-problem]').forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -195,7 +218,6 @@
         });
     }
 
-    /* ── Planet Activity ── */
     function initPlanetActivity() {
         document.querySelectorAll('[data-planet]').forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -218,7 +240,6 @@
         });
     }
 
-    /* ── People Scenario ── */
     function initPeopleScenario() {
         document.querySelectorAll('[data-scenario]').forEach(function(btn) {
             btn.addEventListener('click', function() {

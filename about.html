@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="About Digital Literacy Hub — a public educational platform for digital literacy.">
     <title>About | Digital Literacy Hub</title>
-    <link rel="icon" href="assets/dlh.png" type="image/png">
+    <link rel="icon" href="assets/dlh-mark-96.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hub.css">
+    <meta name="theme-color" content="#0e2747">
+    <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 <div class="topbar">Learn · Think · Create · Connect <strong>About</strong></div>
 <header class="header">
     <a class="brand" href="index.html">
-        <span class="brand-mark"><img src="assets/dlh.png" alt="Digital Literacy Hub logo"></span>
+        <span class="brand-mark"><img src="assets/dlh-mark-96.png" alt="Digital Literacy Hub logo"></span>
         <span class="brand-text"><strong>Digital Literacy Hub</strong><small>Learn · Think · Create · Connect</small></span>
     </a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
@@ -21,13 +25,14 @@
     <nav class="nav" id="site-nav" aria-label="Main navigation">
         <div class="mobile-drawer-head">
             <div class="mobile-drawer-brand">
-                <img src="assets/dlh.png" alt="" width="38" height="38">
+                <img src="assets/dlh-mark-96.png" alt="" width="38" height="38">
                 <span></span>
             </div>
             <button class="drawer-close" type="button" aria-label="Close navigation">×</button>
         </div>
         <a href="index.html" data-nav-key="home">Home</a>
         <a href="skills.html" data-nav-key="learn">Learn</a>
+        <a href="situations.html" data-nav-key="situations">Situations</a>
         <a href="interactive.html" data-nav-key="interactive">Interactive</a>
         <a href="challenge.html" data-nav-key="assessment">Assessment</a>
         <a href="progress.html" data-nav-key="progress">My Progress</a>
@@ -45,7 +50,7 @@
     <div class="nav-backdrop" aria-hidden="true"></div>
     <a class="nav-cta" href="challenge.html">Take Challenge</a>
 </header>
-<main>
+<main id="main">
     <section class="page-hero">
         <div class="eyebrow">THE FOUNDATION</div>
         <h1>What does it mean to be <em>digitally literate?</em></h1>
@@ -61,7 +66,7 @@
                     <p style="color:var(--muted);">We believe that understanding technology is no longer optional — it shapes how we learn, work, communicate, stay safe, and create opportunity. Our content is designed to be useful whether you are just getting started or looking to strengthen existing skills.</p>
                 </div>
                 <div class="reveal delay-1">
-                    <img src="assets/dlh.png" alt="Digital Literacy Hub logo" style="width:min(260px,70%);margin:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);">
+                    <img src="assets/dlh-512.png" alt="Digital Literacy Hub logo" style="width:min(260px,70%);margin:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);">
                 </div>
             </div>
         </div>
@@ -76,7 +81,45 @@
 <article class="info-card reveal delay-2"><h3>The approach</h3><p><strong>Learn → Practise → Test → Improve → Apply.</strong> Visitors can follow this cycle independently without needing someone to explain the platform.</p></article>
 </div></div></section>
 
-<section class="section" style="background:var(--paper-warm);">
+<section class="section" aria-labelledby="frameworks-h">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2 id="frameworks-h">Built on a recognised framework</h2>
+                <p>The Hub’s skill areas line up with DigComp 2.2, the European Commission’s Digital Competence Framework for Citizens (2022). It describes 21 competences in five areas. The Hub is not affiliated with the European Commission. The table shows where each skill area sits.</p>
+            </div>
+            <div class="fw-wrap">
+                <table class="fw-table">
+                    <caption class="sr-only">Hub skill areas and the DigComp 2.2 area each one belongs to</caption>
+                    <thead><tr><th scope="col">Hub skill area</th><th scope="col">DigComp 2.2 area</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Computer literacy</th><td>The foundation for all five areas</td></tr>
+                        <tr><th scope="row">Internet literacy</th><td>Information and data literacy</td></tr>
+                        <tr><th scope="row">Information literacy</th><td>Information and data literacy</td></tr>
+                        <tr><th scope="row">Cybersecurity</th><td>Safety</td></tr>
+                        <tr><th scope="row">Digital communication</th><td>Communication and collaboration</td></tr>
+                        <tr><th scope="row">Digital creativity</th><td>Digital content creation</td></tr>
+                        <tr><th scope="row">Digital financial literacy</th><td>Safety, and Communication and collaboration (digital services)</td></tr>
+                        <tr><th scope="row">AI literacy</th><td>All five areas. DigComp 2.2 added examples of interacting with AI throughout</td></tr>
+                        <tr><th scope="row">Problem solving</th><td>Problem solving</td></tr>
+                        <tr><th scope="row">Digital citizenship</th><td>Communication and collaboration</td></tr>
+                        <tr><th scope="row">Environmental responsibility</th><td>Safety (protecting the environment)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--paper-warm);" aria-labelledby="goals-h">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2 id="goals-h">Part of a bigger picture</h2>
+                <p>People, Planet, and Prosperity are three of the five Ps that frame the United Nations 2030 Agenda for Sustainable Development. The other two are Peace and Partnership. The Hub focuses on the first three, and treats digital literacy as a skill that serves all of them.</p>
+            </div>
+            <p class="fw-sources">Sources: <a href="https://icdl.org/updated-digcomp-2-2-published-by-european-commission" rel="noopener">DigComp 2.2 summary (ICDL Foundation)</a>; <a href="https://sdgs.un.org/2030agenda" rel="noopener">UN 2030 Agenda</a>; <a href="https://datareportal.com/reports/digital-2026-zimbabwe" rel="noopener">DataReportal, Digital 2026: Zimbabwe</a>; <a href="https://www.itu.int/en/ITU-D/Environment/Pages/Publications/The-Global-E-Waste-Monitor-2024.aspx" rel="noopener">Global E-waste Monitor 2024</a>.</p>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--paper-warm);">
         <div class="section-inner">
             <div class="section-header reveal">
                 <h2>Who is this for?</h2>
@@ -164,6 +207,7 @@
             </div>
             <div>
                 <h4>Learn</h4>
+                <a href="situations.html">Situations</a>
                 <a href="skills.html">Digital Skills</a>
                 <a href="safety.html">Safety Lab</a>
                 <a href="information.html">Information Lab</a>

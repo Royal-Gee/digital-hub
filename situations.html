@@ -3,17 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Interactive digital literacy pledge activity — select your commitments.">
-    <title>Pledge Activity | Digital Literacy Hub</title>
+    <meta name="description" content="Ten everyday digital situations with three choices each: scams, rumours, e-waste, online work and AI. Practise the decision, then see why it works or fails.">
+    <meta name="theme-color" content="#0e2747">
+    <title>Situations | Digital Literacy Hub</title>
     <link rel="icon" href="assets/dlh-mark-96.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hub.css">
-    <meta name="theme-color" content="#0e2747">
     <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="topbar">Learn · Think · Create · Connect <strong>Pledge</strong></div>
 <header class="header">
     <a class="brand" href="index.html">
         <span class="brand-mark"><img src="assets/dlh-mark-96.png" alt="Digital Literacy Hub logo"></span>
@@ -30,7 +29,7 @@
             </div>
             <button class="drawer-close" type="button" aria-label="Close navigation">×</button>
         </div>
-        <a href="index.html" data-nav-key="home">Home</a>
+        <a class="active" href="index.html" data-nav-key="home">Home</a>
         <a href="skills.html" data-nav-key="learn">Learn</a>
         <a href="situations.html" data-nav-key="situations">Situations</a>
         <a href="interactive.html" data-nav-key="interactive">Interactive</a>
@@ -51,58 +50,46 @@
     <a class="nav-cta" href="challenge.html">Take Challenge</a>
 </header>
 <main id="main">
-    <section class="page-hero">
-        <div class="eyebrow">MAKE A COMMITMENT</div>
-        <h1>My <em>Digital Literacy Pledge.</em></h1>
-        <p>Select the commitments you are prepared to practise. This is a personal reflection activity — nothing is stored or sent.</p>
-    </section>
 
-    <section class="section">
-        <div class="section-inner">
-            <div class="pledge-list reveal">
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will protect passwords, PINs, and other sensitive information.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will check important information before sharing it.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will pause when a message creates pressure, fear, or urgency.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will treat people respectfully in digital spaces.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will use technology to learn, create, and solve problems.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will keep developing my digital skills over time.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will think critically before trusting online content.</span>
-                </label>
-                <label class="pledge-item">
-                    <input type="checkbox" data-pledge>
-                    <span>I will use digital tools productively and for constructive purposes.</span>
-                </label>
-            </div>
+    <div class="s-layout h-wrap">
+    <div class="s-intro">
+        <h1>Ten everyday situations. Three choices each.</h1>
+        <p>Each one comes from real digital life: a message, a call, an advert, an offer. Choose what you would do, then see why it works or fails. Your results stay in this browser.</p>
+    </div>
+        <div class="s-side">
+            <noscript><p>The situations need JavaScript. Please turn it on, or try the <a href="safety.html">Safety Lab</a>.</p></noscript>
+            <div id="s-list"></div>
+            <section class="s-summary" id="s-summary" aria-live="polite" aria-label="Your results"></section>
+        </div>
 
-            <div id="pledge-count" class="feedback" style="text-align:center;margin-bottom:20px;display:block;">0 of 8 commitments selected</div>
-            <div id="pledge-result" class="feedback" style="display:none;text-align:center;"></div>
-
-            <div class="actions text-center" style="margin-top:24px;">
-                <button class="btn primary" id="pledgeBtn">Complete Pledge</button>
-                <button class="btn ghost" id="pledgeReset">Reset</button>
+        <div class="s-stage">
+            <div class="phone" id="s-phone" role="group" aria-label="Situation">
+                <div class="phone-screen">
+                    <div class="phone-head">
+                        <div class="phone-avatar" aria-hidden="true">?</div>
+                        <div><strong class="phone-name"></strong><span class="phone-sub"></span></div>
+                    </div>
+                    <div class="chat" role="log" aria-live="polite" tabindex="-1">
+                        <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="reply">
+                        <p>What do you do?</p>
+                        <div class="reply-options"></div>
+                    </div>
+                    <div class="verdict" hidden tabindex="-1" data-tone="">
+                        <p class="verdict-tag"></p>
+                        <h3 class="verdict-title"></h3>
+                        <p class="verdict-body"></p>
+                        <p class="verdict-remember"></p>
+                        <div class="verdict-actions">
+                            <button class="btn primary small" type="button" data-next>Next situation</button>
+                            <button class="btn ghost small" type="button" data-retry>Try again</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </main>
 <footer class="footer"><div class="footer-inner">
         <div class="footer-brand">
@@ -141,7 +128,6 @@
 </footer>
 <script src="js/icons.js"></script>
 <script src="js/main.js"></script>
-<script src="js/pledge.js"></script>
+<script src="js/situations.js"></script>
 </body>
 </html>
-
